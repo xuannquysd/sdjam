@@ -23,10 +23,10 @@ public class SlotSpin : MonoBehaviour
         {
             yield return null;
 
-            fakeSlide.anchoredPosition += 2000f * Time.deltaTime * Vector2.down;
-            if (fakeSlide.anchoredPosition.y < -1200f)
+            fakeSlide.anchoredPosition += 1500f * Time.deltaTime * Vector2.down;
+            if (fakeSlide.anchoredPosition.y < -140f * 12f)
             {
-                float offset = 1200f + fakeSlide.anchoredPosition.y;
+                float offset = 140f * 12f + fakeSlide.anchoredPosition.y;
                 fakeSlide.anchoredPosition = new(0f, -offset);
             }
         }
@@ -43,13 +43,13 @@ public class SlotSpin : MonoBehaviour
         {
             yield return null;
             
-            if (fakeSlide.anchoredPosition.y > -1400f)
+            if (fakeSlide.anchoredPosition.y > -140f * 14f)
             {
-                fakeSlide.anchoredPosition += 2000f * Time.deltaTime * Vector2.down;
+                fakeSlide.anchoredPosition += 1500f * Time.deltaTime * Vector2.down;
             }
             else
             {
-                fakeSlide.anchoredPosition = new(0f, -1400f);
+                fakeSlide.anchoredPosition = new(0f, -140f * 14f);
                 break;
             }
         }

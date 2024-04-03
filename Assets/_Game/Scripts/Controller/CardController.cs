@@ -14,7 +14,6 @@ public class CardController : MonoBehaviour
 
     private void Start()
     {
-        xTxt = transform.GetChild(0).GetComponent<TMP_Text>();
         xTxt.text = "";
     }
 
