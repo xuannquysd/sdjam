@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +10,32 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController[] cardBtn;
-    [SerializeField] Button downBet, upBet, cancelBet, spinBtn;
-    [SerializeField] int[] pointBet;
-    [SerializeField] TMP_Text pointBetTxt;
+    [SerializeField] Button bet1kBtn, bet10kBtn, bet100kBtn, cancelBet, spinBtn;
     [SerializeField]
     SlotSpin[] slotSpin;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] List<BetData> bets;
+    [SerializeField] Transform coinUI;
+    [SerializeField] Transform effectCanvas;
+
+    Coroutine waitSpin;
 
     public GameState GameState;
 
-    private int indexPointBet;
-    private int currentPointBet;
+    private long currentPointBet;
 
     public static GameManager Instance;
 
-    public int CurrentPointBet
+    public long CurrentPointBet
     {
         get => currentPointBet; set
         {
             currentPointBet = value;
-            pointBetTxt.text = value.ToString();
         }
     }
 
-    public int IndexPointBet
-    {
-        get => indexPointBet; set
-        {
-            indexPointBet = value;
-            CurrentPointBet = pointBet[value];
-        }
-    }
+    public Transform CoinUI { get => coinUI; set => coinUI = value; }
+    public Transform EffectCanvas { get => effectCanvas; set => effectCanvas = value; }
 
     private void Awake()
     {
@@ -62,8 +57,8 @@ public class GameManager : MonoBehaviour
     {
         GameState = GameState.WAIT;
 
+        CurrentPointBet = 1000;
         bets = new();
-        IndexPointBet = 0;
 
         SetMoneyText(null);
     }
@@ -79,19 +74,18 @@ public class GameManager : MonoBehaviour
 
     void InitBetButton()
     {
-        downBet.onClick.AddListener(() => OnClickChangeValueBet(-1));
-        upBet.onClick.AddListener(() => OnClickChangeValueBet(1));
+        bet1kBtn.onClick.AddListener(() => OnClickChangeValueBet(1000));
+        bet10kBtn.onClick.AddListener(() => OnClickChangeValueBet(10000));
+        bet100kBtn.onClick.AddListener(() => OnClickChangeValueBet(100000));
         cancelBet.onClick.AddListener(OnClickCancelBet);
         spinBtn.onClick.AddListener(OnClickSpin);
     }
 
-    void OnClickChangeValueBet(int offset)
+    void OnClickChangeValueBet(long value)
     {
         if (GameState != GameState.WAIT) return;
 
-        if (IndexPointBet + offset < 0 || IndexPointBet + offset >= pointBet.Length) return;
-        IndexPointBet += offset;
-        CurrentPointBet = pointBet[IndexPointBet];
+        CurrentPointBet = value;
     }
 
     void OnClickCancelBet()
@@ -118,6 +112,8 @@ public class GameManager : MonoBehaviour
         if (GameState != GameState.WAIT) return;
 
         if (IsNotEnoughMoney()) return;
+
+        SoundManager.Instance.SoundBet();
 
         int indexContainCard = IndexContainCard(indexCard);
 
@@ -167,6 +163,8 @@ public class GameManager : MonoBehaviour
     void OnClickSpin()
     {
         if (GameState != GameState.WAIT) return;
+        if(bets.Count == 0) return;
+
         GameState = GameState.ROLL;
 
         SessionPref.AddMoney(-TotalCurrentMoneyBet());
@@ -211,23 +209,31 @@ public class GameManager : MonoBehaviour
             ResponseData responseData = JsonUtility.FromJson<ResponseData>(www.downloadHandler.text);
             CardData cardData = SOContainer.Instance.GetSO<CardData>();
 
+            SoundManager.Instance.SoundSpin();
             for(int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(1.5f);
                 Sprite icon = cardData.Cards.Where(c => c.idCard == responseData.cards[i]).First().icon;
-                StartCoroutine(slotSpin[i].ShowReward(icon));
+                waitSpin = StartCoroutine(slotSpin[i].ShowReward(icon));
             }
 
-            /*foreach (var bet in bets) 
-            {
-                if (IsWin(bet.IdCard, responseData)) SessionPref.AddMoney(bet.Money);
-            }*/
-            SessionPref.AddMoney(responseData.totalReward);
+            yield return waitSpin;
 
-            Clear();
+            SoundManager.Instance.StopSount();
+            long winMoney = responseData.totalReward;
+            SessionPref.AddMoney(winMoney);
+
+            if(winMoney > 0) ShowEffectWin(winMoney);
+            //Clear();
         }
 
         GameState = GameState.WAIT;
+    }
+
+    private void ShowEffectWin(long totalReward)
+    {
+        WinPopup winPopup = PopupManager.Instance.ShowPopup<WinPopup>();
+        winPopup.InitUI(totalReward);
     }
 
     void InitObserver()

@@ -11,6 +11,5 @@ public class CardData : ScriptableObject
     {
         public byte idCard;
         public Sprite icon;
-        public CardType Type;
     }
 }

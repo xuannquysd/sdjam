@@ -6,7 +6,7 @@ public class BetData
 {
     public int Index;
     public byte IdCard;
-    public int Money;
+    public long Money;
 }
 
 [Serializable]

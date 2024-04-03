@@ -1,25 +1,47 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
-public class PopupManager : SingletonDontDestroy<PopupManager>
+public class PopupManager : MonoBehaviour
 {
+    [SerializeField] PopupUI[] popupPrefab;
     readonly Stack<GameObject> popups = new();
 
-    public GameObject ShowPopup(string path, Transform parent = null)
+    public static PopupManager Instance;
+
+    private void Awake()
     {
-        GameObject prefab = Resources.Load<GameObject>(path);
-        GameObject popup = Instantiate(prefab, parent);
-        popups.Push(popup);
-        return popup;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
+
+    public T ShowPopup<T>(Transform parent = null) where T : PopupUI
+    {
+        PopupUI prefab = popupPrefab.Where(popup => typeof(T).IsAssignableFrom(popup.GetType())).FirstOrDefault();
+
+        if (prefab == null)
+        {
+            throw new NullReferenceException("Ko tim thay popup");
+        }
+        else
+        {
+            PopupUI popup = Instantiate(prefab, parent);
+            popups.Push(popup.gameObject);
+            return popup.GetComponent<T>();
+        }
     }
 
     public void HidePopup()
     {
         GameObject popup = popups.Pop();
-        if(popup == null)
+        if (popup == null)
         {
             HidePopup();
             return;

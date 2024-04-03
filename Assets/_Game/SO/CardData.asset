@@ -14,52 +14,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cards:
   - idCard: 0
-    icon: {fileID: 21300000, guid: d57baa2f769b8e34491bb21815c28433, type: 3}
+    icon: {fileID: 21300000, guid: 34e04524aac238b4db67da70f4083278, type: 3}
   - idCard: 6
-    icon: {fileID: 21300000, guid: 1191b3a8e8cad324e876d801497a0c12, type: 3}
+    icon: {fileID: 21300000, guid: d04bd774433675444a8b8b0d53c3da61, type: 3}
   - idCard: 7
-    icon: {fileID: 21300000, guid: b8feff2c75acc6e46af800eb7670ee62, type: 3}
+    icon: {fileID: 21300000, guid: 7fa14ba5004495c429ac013b901137de, type: 3}
   - idCard: 8
-    icon: {fileID: 21300000, guid: 47ef8aaa4efd20a41b0d6f788519f78c, type: 3}
+    icon: {fileID: 21300000, guid: 792b0a03f8a16664bbd16097f78c735a, type: 3}
   - idCard: 9
-    icon: {fileID: 21300000, guid: c3edc43d404b7ba4798d04fb431cf9f4, type: 3}
+    icon: {fileID: 21300000, guid: 86c2dfb7679ab364f8121ff2c25b1e44, type: 3}
   - idCard: 10
-    icon: {fileID: 21300000, guid: 1b7e5ea158bcea9459a3f5dc0ed82429, type: 3}
+    icon: {fileID: 21300000, guid: 4423abdd4b23f9d4a90c8f24a0336c22, type: 3}
   - idCard: 11
-    icon: {fileID: 21300000, guid: 85255cef010046d4bb813a6b3607b39d, type: 3}
+    icon: {fileID: 21300000, guid: cad41b7833e7bd24286688af19dc5b8c, type: 3}
   - idCard: 12
-    icon: {fileID: 21300000, guid: 5f502871e7e34144cbbce25f9143699e, type: 3}
+    icon: {fileID: 21300000, guid: 57957e2011aabb84b87709bcb1449b24, type: 3}
   - idCard: 13
-    icon: {fileID: 21300000, guid: d2f9cb2f17f06f64eb42fd8f2424876a, type: 3}
+    icon: {fileID: 21300000, guid: 167d4406bc2d5c744a85e80dfc06e21f, type: 3}
   - idCard: 14
-    icon: {fileID: 21300000, guid: 97c2b16aee542a84baeaece4d181d243, type: 3}
+    icon: {fileID: 21300000, guid: 43aa32cbf8fba8d44a20054d2a201e7a, type: 3}
   - idCard: 15
-    icon: {fileID: 21300000, guid: f31d85b0fdb9de141884f5ad934fa716, type: 3}
+    icon: {fileID: 21300000, guid: 74651577fd027ad4c8fc50139bd61ee7, type: 3}
   - idCard: 16
-    icon: {fileID: 21300000, guid: 60555a4b8a17e924ab1a14e1c8314b95, type: 3}
+    icon: {fileID: 21300000, guid: 7d4cedec4c52fd348b82938d2cc88061, type: 3}
   - idCard: 17
-    icon: {fileID: 21300000, guid: 5d342b1c1a6d80d4fbc9dd2130c5af57, type: 3}
+    icon: {fileID: 21300000, guid: daf1f611c9b9da2448c941b0eba1432d, type: 3}
   - idCard: 18
-    icon: {fileID: 21300000, guid: fc86c42e9ab9d6f4389b97f51d95d000, type: 3}
+    icon: {fileID: 21300000, guid: 4573f72eee71c9f42ba6005972916339, type: 3}
   - idCard: 19
-    icon: {fileID: 21300000, guid: 9444ac503dd0f694abc5e4e00d955c1d, type: 3}
+    icon: {fileID: 21300000, guid: 8060c2763cdbf194fa4121cc49c5b5d7, type: 3}
   - idCard: 20
-    icon: {fileID: 21300000, guid: 32750d430f687dd4f873420b30083a8b, type: 3}
+    icon: {fileID: 21300000, guid: c32bd121b50affc4ebadb0054fdcbdfb, type: 3}
   - idCard: 21
-    icon: {fileID: 21300000, guid: 5cf10495b2dc5f042935d10e73e5ea7b, type: 3}
+    icon: {fileID: 21300000, guid: 9e396b1c44fbaa448bd23610ebfa1a04, type: 3}
   - idCard: 22
-    icon: {fileID: 21300000, guid: aae0710120162cb43af1cb263707119c, type: 3}
+    icon: {fileID: 21300000, guid: f7b99646f9682734f8f8fb70514ec1cd, type: 3}
   - idCard: 23
-    icon: {fileID: 21300000, guid: 253825a4078e3f440928836609d3242d, type: 3}
+    icon: {fileID: 21300000, guid: 8af1844774c1b8e4fb45a3209f2f68c2, type: 3}
   - idCard: 24
-    icon: {fileID: 21300000, guid: 1e46de8f3bb8bec449fd4e777aea9682, type: 3}
+    icon: {fileID: 21300000, guid: 2ebee5456d5775c4aa920669f5161a8e, type: 3}
   - idCard: 25
-    icon: {fileID: 21300000, guid: b67e49d5ce0c1904e945678dc7f84093, type: 3}
+    icon: {fileID: 21300000, guid: 0e7ad5b652616144e8823b4007c244ba, type: 3}
   - idCard: 26
-    icon: {fileID: 21300000, guid: fdea92044b0a21f4186ca5ac8a4dfaba, type: 3}
+    icon: {fileID: 21300000, guid: 968adadf65e177e4890316ea26ca9065, type: 3}
   - idCard: 27
-    icon: {fileID: 21300000, guid: d5b4c9ffd70d8d84cb678842d139a412, type: 3}
+    icon: {fileID: 21300000, guid: 1eb51860dad1a2543b5a15cc181172c9, type: 3}
   - idCard: 28
-    icon: {fileID: 21300000, guid: b8e74f2cad34cf24a9fbdd9681d6158a, type: 3}
+    icon: {fileID: 21300000, guid: bb4e5162eb0c8cd458b0b417b6c4f94f, type: 3}
   - idCard: 29
-    icon: {fileID: 21300000, guid: 336ba14b9c296bd428d109c5d1b068eb, type: 3}
+    icon: {fileID: 21300000, guid: f8c515f8c94acfe449995ef4b15c845b, type: 3}
