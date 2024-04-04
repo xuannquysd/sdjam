@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform coinUI;
     [SerializeField] Transform effectCanvas;
 
+    [SerializeField]
+    Image[] betBg;
+    [SerializeField] Sprite selectedBet, unselectedBet;
+    [SerializeField] CardController khanUI, phudocUI;
+
+    bool isShowNoti = false;
     Coroutine waitSpin;
 
     public GameState GameState;
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public Transform CoinUI { get => coinUI; set => coinUI = value; }
     public Transform EffectCanvas { get => effectCanvas; set => effectCanvas = value; }
+    public bool IsShowNoti { get => isShowNoti; set => isShowNoti = value; }
 
     private void Awake()
     {
@@ -57,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         GameState = GameState.WAIT;
 
-        CurrentPointBet = 1000;
+        CurrentPointBet = 0;
         bets = new();
 
         SetMoneyText(null);
@@ -74,18 +81,24 @@ public class GameManager : MonoBehaviour
 
     void InitBetButton()
     {
-        bet1kBtn.onClick.AddListener(() => OnClickChangeValueBet(1000));
-        bet10kBtn.onClick.AddListener(() => OnClickChangeValueBet(10000));
-        bet100kBtn.onClick.AddListener(() => OnClickChangeValueBet(100000));
+        bet1kBtn.onClick.AddListener(() => OnClickChangeValueBet(1000, 0));
+        bet10kBtn.onClick.AddListener(() => OnClickChangeValueBet(10000, 1));
+        bet100kBtn.onClick.AddListener(() => OnClickChangeValueBet(100000, 2));
         cancelBet.onClick.AddListener(OnClickCancelBet);
         spinBtn.onClick.AddListener(OnClickSpin);
     }
 
-    void OnClickChangeValueBet(long value)
+    void OnClickChangeValueBet(long value, int index)
     {
         if (GameState != GameState.WAIT) return;
 
         CurrentPointBet = value;
+
+        for(int i = 0; i < betBg.Length; i++)
+        {
+            if (i == index) betBg[i].sprite = selectedBet;
+            else betBg[i].sprite = unselectedBet;
+        }
     }
 
     void OnClickCancelBet()
@@ -102,6 +115,7 @@ public class GameManager : MonoBehaviour
             int index = bets[i].Index;
 
             cardBtn[index].SetText("");
+            cardBtn[index].Clear();
             bets.RemoveAt(i);
             i--;
         }
@@ -111,11 +125,23 @@ public class GameManager : MonoBehaviour
     {
         if (GameState != GameState.WAIT) return;
 
+        if(CurrentPointBet == 0)
+        {
+            //Thông báo
+            if (isShowNoti) return;
+            PopupManager.Instance.ShowPopup<NotiPopup>();
+            IsShowNoti = true;
+
+            return;
+        }
+
         if (IsNotEnoughMoney()) return;
 
         SoundManager.Instance.SoundBet();
 
         int indexContainCard = IndexContainCard(indexCard);
+
+        cardBtn[indexCard].OnSelect(true);
 
         if (indexContainCard > -1)
         {
@@ -164,6 +190,12 @@ public class GameManager : MonoBehaviour
     {
         if (GameState != GameState.WAIT) return;
         if(bets.Count == 0) return;
+
+        foreach (var card in cardBtn)
+        {
+            card.Clear();
+            if (IsSelected(card.Id)) card.OnSelect(true);
+        }
 
         GameState = GameState.ROLL;
 
@@ -223,6 +255,16 @@ public class GameManager : MonoBehaviour
             long winMoney = responseData.totalReward;
             SessionPref.AddMoney(winMoney);
 
+            foreach(var card in cardBtn)
+            {
+                if (IsWin(card.Id, responseData)) card.Win();
+            }
+
+            if (IsKhan(responseData)) khanUI.Win();
+            else if (IsPhuDoc(responseData)) phudocUI.Win();
+
+            yield return new WaitForSeconds(2f);
+
             if(winMoney > 0) ShowEffectWin(winMoney);
             //Clear();
         }
@@ -234,6 +276,12 @@ public class GameManager : MonoBehaviour
     {
         WinPopup winPopup = PopupManager.Instance.ShowPopup<WinPopup>();
         winPopup.InitUI(totalReward);
+
+        /*foreach (var card in cardBtn)
+        {
+            card.Clear();
+            if (IsSelected(card.Id)) card.OnSelect(true);
+        }*/
     }
 
     void InitObserver()
@@ -255,5 +303,37 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+    
+    bool IsSelected(byte idCard)
+    {
+        foreach(var bet in bets)
+        {
+            if(bet.IdCard == idCard) return true;
+        }
+
+        return false;
+    }
+
+    bool IsKhan(ResponseData responseData)
+    {
+        byte[] cardWin = responseData.cards;
+        for(int i = 1; i < cardWin.Length; i++)
+        {
+            if (cardWin[i] != cardWin[i - 1]) return false;
+        }
+
+        return true;
+    }
+
+    bool IsPhuDoc(ResponseData responseData)
+    {
+        byte[] cardWin = responseData.cards;
+        for (int i = 1; i < cardWin.Length; i++)
+        {
+            if (cardWin[i] - cardWin[i - 1] != 3) return false;
+        }
+
+        return true;
     }
 }
