@@ -60,4 +60,15 @@ public class SessionPref
         CurrentData.BetDatas = bets.ToArray();
         SaveData();
     }
+
+    public static bool IsRemoveAds()
+    {
+        return CurrentData.isRemoveAds;
+    }
+
+    public static void ActiveRemoveAds()
+    {
+        CurrentData.isRemoveAds = true;
+        SaveData();
+    }
 }

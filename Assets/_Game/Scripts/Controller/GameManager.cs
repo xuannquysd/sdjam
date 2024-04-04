@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     Image[] betBg;
     [SerializeField] Sprite selectedBet, unselectedBet;
     [SerializeField] CardController khanUI, phudocUI;
-    [SerializeField] Button prtScrBtn, tutorialBtn, rewardBtn;
+    [SerializeField] Button prtScrBtn, tutorialBtn, rewardBtn, shopBtn;
 
     bool isShowNoti = false;
     Coroutine waitSpin;
@@ -60,10 +60,17 @@ public class GameManager : MonoBehaviour
             prtScrBtn.onClick.AddListener(OnClickPrtSrc);
             tutorialBtn.onClick.AddListener(OnClickTutorial);
             rewardBtn.onClick.AddListener(OnClickReward);
+            shopBtn.onClick.AddListener(OnClickShop);
 
             InitObserver();
         }
         else Destroy(gameObject);
+    }
+
+    private void OnClickShop()
+    {
+        if (GameState != GameState.WAIT) return;
+        PopupManager.Instance.ShowPopup<ShopPopup>();
     }
 
     private void OnClickReward()
@@ -136,9 +143,11 @@ public class GameManager : MonoBehaviour
 
         if(CurrentPointBet == 0)
         {
-            //Th�ng b�o
+            //Thông báo
             if (isShowNoti) return;
-            PopupManager.Instance.ShowPopup<NotiPopup>();
+            NotiPopup notiPopup = PopupManager.Instance.ShowPopup<NotiPopup>();
+            notiPopup.SetNoti("Vui lòng chọn mức cược");
+
             IsShowNoti = true;
 
             return;
