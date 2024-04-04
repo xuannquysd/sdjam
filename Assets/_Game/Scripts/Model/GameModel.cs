@@ -13,22 +13,10 @@ public class BetData
 public class ResponseData
 {
     public byte[] cards;
+    public byte[] winedCards;
     public SpecialReward specialReward;
     public long totalReward;
     public string status;
-
-    public override string ToString()
-    {
-        string txt = "cards: ";
-        foreach(var card in cards)
-        {
-            txt += card.ToString() +", ";
-        }
-        txt += "totalReward: " + totalReward;
-        txt += "status: " + status;
-
-        return txt;
-    }
 }
 
 [Serializable]

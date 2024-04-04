@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using static CardData;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     Image[] betBg;
     [SerializeField] Sprite selectedBet, unselectedBet;
     [SerializeField] CardController khanUI, phudocUI;
+    [SerializeField] Button prtScrBtn, tutorialBtn, rewardBtn;
 
     bool isShowNoti = false;
     Coroutine waitSpin;
@@ -55,9 +57,19 @@ public class GameManager : MonoBehaviour
             InitActionCard();
             InitBetButton();
 
+            prtScrBtn.onClick.AddListener(OnClickPrtSrc);
+            tutorialBtn.onClick.AddListener(OnClickTutorial);
+            rewardBtn.onClick.AddListener(OnClickReward);
+
             InitObserver();
         }
         else Destroy(gameObject);
+    }
+
+    private void OnClickReward()
+    {
+        if (GameState != GameState.WAIT) return;
+        PopupManager.Instance.ShowPopup<AdsPopup>();
     }
 
     private void Start()
@@ -110,14 +122,11 @@ public class GameManager : MonoBehaviour
 
     void Clear()
     {
-        for(int i = 0; i < bets.Count; i++)
+        bets.Clear();
+        foreach (var card in cardBtn)
         {
-            int index = bets[i].Index;
-
-            cardBtn[index].SetText("");
-            cardBtn[index].Clear();
-            bets.RemoveAt(i);
-            i--;
+            card.Clear();
+            card.SetText("");
         }
     }
 
@@ -146,7 +155,7 @@ public class GameManager : MonoBehaviour
         if (indexContainCard > -1)
         {
             bets[indexContainCard].Money += CurrentPointBet;
-            cardBtn[indexCard].SetText(bets[indexContainCard].Money.ToString());
+            cardBtn[indexCard].SetText(FormatText.GetFormatText(bets[indexContainCard].Money));
         }
         else
         {
@@ -158,7 +167,7 @@ public class GameManager : MonoBehaviour
             };
 
             bets.Add(bet);
-            cardBtn[indexCard].SetText(CurrentPointBet.ToString());
+            cardBtn[indexCard].SetText(FormatText.GetFormatText(CurrentPointBet));
         }
     }
 
@@ -191,6 +200,8 @@ public class GameManager : MonoBehaviour
         if (GameState != GameState.WAIT) return;
         if(bets.Count == 0) return;
 
+        SaveBet();
+
         foreach (var card in cardBtn)
         {
             card.Clear();
@@ -208,6 +219,14 @@ public class GameManager : MonoBehaviour
 
         string data = ConvertToJson();
         StartCoroutine(GetResult(data));
+    }
+
+    void SaveBet()
+    {
+        foreach (var bet in bets)
+        {
+            SessionPref.AddBetData(bet);
+        }
     }
 
     string ConvertToJson()
@@ -242,34 +261,37 @@ public class GameManager : MonoBehaviour
             CardData cardData = SOContainer.Instance.GetSO<CardData>();
 
             SoundManager.Instance.SoundSpin();
-            for(int i = 0; i < 3; i++)
+
+            int indexSlot = 0;
+
+            yield return new WaitForSeconds(1.5f);
+            for (int i = 0; i < responseData.winedCards.Length; i++)
             {
-                yield return new WaitForSeconds(1.5f);
-                Sprite icon = cardData.Cards.Where(c => c.idCard == responseData.cards[i]).First().icon;
-                waitSpin = StartCoroutine(slotSpin[i].ShowReward(icon));
+                Card card = cardData.Cards.Where(c => c.idCard == responseData.winedCards[i]).FirstOrDefault();
+
+                if (card != null)
+                {
+                    waitSpin = StartCoroutine(slotSpin[indexSlot].ShowReward(card.icon));
+                    indexSlot++;
+                    yield return new WaitForSeconds(1.5f);
+                }
             }
 
             yield return waitSpin;
 
             SoundManager.Instance.StopSount();
             long winMoney = responseData.totalReward;
-            SessionPref.AddMoney(winMoney);
-
+            
             foreach(var card in cardBtn)
             {
                 if (IsWin(card.Id, responseData)) card.Win();
             }
 
-            if (IsKhan(responseData)) khanUI.Win();
-            else if (IsPhuDoc(responseData)) phudocUI.Win();
-
             yield return new WaitForSeconds(2f);
 
             if(winMoney > 0) ShowEffectWin(winMoney);
-            //Clear();
+            else GameState = GameState.WAIT;
         }
-
-        GameState = GameState.WAIT;
     }
 
     private void ShowEffectWin(long totalReward)
@@ -292,12 +314,12 @@ public class GameManager : MonoBehaviour
     void SetMoneyText(object data)
     {
         long currentMoney = SessionPref.GetCurrentMoney();
-        moneyText.text = currentMoney.ToString();
+        moneyText.text = FormatText.GetFormatText(currentMoney);
     }
 
     bool IsWin(byte idCard, ResponseData responseData)
     {
-        foreach(var card in responseData.cards)
+        foreach(var card in responseData.winedCards)
         {
             if(card == idCard) return true;
         }
@@ -317,7 +339,7 @@ public class GameManager : MonoBehaviour
 
     bool IsKhan(ResponseData responseData)
     {
-        byte[] cardWin = responseData.cards;
+        byte[] cardWin = responseData.winedCards;
         for(int i = 1; i < cardWin.Length; i++)
         {
             if (cardWin[i] != cardWin[i - 1]) return false;
@@ -328,12 +350,28 @@ public class GameManager : MonoBehaviour
 
     bool IsPhuDoc(ResponseData responseData)
     {
-        byte[] cardWin = responseData.cards;
+        byte[] cardWin = responseData.winedCards;
         for (int i = 1; i < cardWin.Length; i++)
         {
             if (cardWin[i] - cardWin[i - 1] != 3) return false;
         }
 
         return true;
+    }
+
+    void OnClickPrtSrc()
+    {
+        string path = "";
+#if UNITY_EDITOR
+        path += "Assets/";
+#endif
+        path += Guid.NewGuid().ToString() + ".png";
+        ScreenCapture.CaptureScreenshot(path);
+    }
+
+    void OnClickTutorial()
+    {
+        if (GameState != GameState.WAIT) return;
+        PopupManager.Instance.ShowPopup<TutorialPopup>();
     }
 }

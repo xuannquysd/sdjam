@@ -4,6 +4,7 @@ using System;
 public class CurrentData 
 {
     public long CurrentMoney;
+    public BetData[] BetDatas;
 
     public CurrentData()
     {

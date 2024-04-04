@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SessionPref
@@ -18,6 +20,10 @@ public class SessionPref
         }
     }
 
+    public static CurrentData GetCurrentData()
+    {
+        return CurrentData;
+    }
     public static void SaveData()
     {
         string data = JsonUtility.ToJson(CurrentData);
@@ -43,5 +49,15 @@ public class SessionPref
         SaveData();
 
         Observer.Notify(Constance.ON_MONEY_CHANGE);
+    }
+
+    public static void AddBetData(BetData betData)
+    {
+        CurrentData.BetDatas ??= new BetData[0];
+        List<BetData> bets = CurrentData.BetDatas.ToList();
+        bets.Add(betData);
+
+        CurrentData.BetDatas = bets.ToArray();
+        SaveData();
     }
 }

@@ -18,12 +18,15 @@ public class SlotSpin : MonoBehaviour
     IEnumerator Spin()
     {
         fakeSlide.anchoredPosition = Vector2.zero;
+        float speed = 0f;
+        float targetSpeed = 1500f;
 
         while (true)
         {
             yield return null;
 
-            fakeSlide.anchoredPosition += 1500f * Time.deltaTime * Vector2.down;
+            if (speed < targetSpeed) speed += 1000f * Time.deltaTime;
+            fakeSlide.anchoredPosition += speed * Time.deltaTime * Vector2.down;
             if (fakeSlide.anchoredPosition.y < -140f * 12f)
             {
                 float offset = 140f * 12f + fakeSlide.anchoredPosition.y;
@@ -49,7 +52,7 @@ public class SlotSpin : MonoBehaviour
             }
             else
             {
-                fakeSlide.anchoredPosition = new(0f, -140f * 14f);
+                fakeSlide.DOAnchorPosY(-140f * 14f, 0.5f).SetEase(Ease.OutBack, -100f);
                 break;
             }
         }

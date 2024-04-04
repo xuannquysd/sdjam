@@ -2,15 +2,26 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinPopup : PopupUI
 {
     [SerializeField] TMP_Text winMoneyTxt;
     [SerializeField] GameObject coinPrefab;
+    [SerializeField] Button claimButton;
 
     public void InitUI(long winMoney)
     {
         StartCoroutine(ShowMoneyEffect(winMoney));
+
+        claimButton.onClick.AddListener(() =>
+        {
+            ShowCoinEffect();
+            GameManager.Instance.GameState = GameState.WAIT;
+
+            SessionPref.AddMoney(winMoney);
+            PopupManager.Instance.HidePopup();
+        });
     }
 
     IEnumerator ShowMoneyEffect(long winMoney)
@@ -18,19 +29,14 @@ public class WinPopup : PopupUI
         long displayMoney = 0;
         long offset = winMoney / 200;
 
-        winMoneyTxt.text = "+" + displayMoney.ToString();
+        winMoneyTxt.text = "<size=120%><sprite index=0></size>" + FormatText.GetFormatText(displayMoney);
 
         for (int i = 0; i < 200; i++)
         {
             yield return null;
             displayMoney += offset;
-            winMoneyTxt.text = "+" + displayMoney.ToString();
+            winMoneyTxt.text = "<size=120%><sprite index=0></size>" + FormatText.GetFormatText(displayMoney);
         }
-
-        yield return new WaitForSeconds(1f);
-
-        ShowCoinEffect();
-        PopupManager.Instance.HidePopup();
     }
 
     void ShowCoinEffect()

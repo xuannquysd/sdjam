@@ -7,7 +7,7 @@ public class CardData : ScriptableObject
     public Card[] Cards;
 
     [Serializable]
-    public struct Card
+    public class Card
     {
         public byte idCard;
         public Sprite icon;
