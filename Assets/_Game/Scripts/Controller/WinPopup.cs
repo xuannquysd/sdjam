@@ -27,11 +27,11 @@ public class WinPopup : PopupUI
     IEnumerator ShowMoneyEffect(long winMoney)
     {
         long displayMoney = 0;
-        long offset = winMoney / 200;
+        long offset = winMoney / 100;
 
         winMoneyTxt.text = "<size=120%><sprite index=0></size>" + FormatText.GetFormatText(displayMoney);
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 100; i++)
         {
             yield return null;
             displayMoney += offset;

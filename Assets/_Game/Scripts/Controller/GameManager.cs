@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
             SessionPref.ReadData();
             DontDestroyOnLoad(gameObject);
 
+            Application.targetFrameRate = 9999;
+
             InitActionCard();
             InitBetButton();
 
@@ -262,7 +264,16 @@ public class GameManager : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(www.error);
+            SessionPref.AddMoney(TotalCurrentMoneyBet());
+            foreach(var slot in slotSpin)
+            {
+                slot.Stop();
+            }
+
+            NotiPopup notiPopup = PopupManager.Instance.ShowPopup<NotiPopup>();
+            notiPopup.SetNoti("Lỗi đường truyền, vui lòng kiểm tra lại mạng");
+
+            GameState = GameState.WAIT;
         }
         else
         {
@@ -376,6 +387,9 @@ public class GameManager : MonoBehaviour
 #endif
         path += Guid.NewGuid().ToString() + ".png";
         ScreenCapture.CaptureScreenshot(path);
+
+        NotiPopup notiPopup = PopupManager.Instance.ShowPopup<NotiPopup>();
+        notiPopup.SetNoti("Đã lưu ảnh");
     }
 
     void OnClickTutorial()

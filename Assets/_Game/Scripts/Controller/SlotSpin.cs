@@ -57,4 +57,10 @@ public class SlotSpin : MonoBehaviour
             }
         }
     }
+
+    public void Stop()
+    {
+        StopCoroutine(spinCoroutine);
+        fakeSlide.anchoredPosition = Vector2.zero;
+    }
 }
