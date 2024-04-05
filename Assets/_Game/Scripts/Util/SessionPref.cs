@@ -43,8 +43,8 @@ public class SessionPref
         Observer.Notify(Constance.ON_MONEY_CHANGE);
     }
 
-    public static void SetMoney(long amount) 
-    { 
+    public static void SetMoney(long amount)
+    {
         CurrentData.CurrentMoney = amount;
         SaveData();
 
@@ -70,5 +70,21 @@ public class SessionPref
     {
         CurrentData.isRemoveAds = true;
         SaveData();
+    }
+
+    public static void AddHistory(BetHistory history)
+    {
+        CurrentData.BetHistory ??= new BetHistory[0];
+
+        var allHistory = CurrentData.BetHistory.ToList();
+        allHistory.Add(history);
+
+        CurrentData.BetHistory = allHistory.ToArray();
+        SaveData();
+    }
+
+    public static BetHistory[] GetHistory()
+    {
+        return CurrentData.BetHistory;
     }
 }

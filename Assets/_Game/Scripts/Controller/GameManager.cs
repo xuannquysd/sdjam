@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     Image[] betBg;
     [SerializeField] Sprite selectedBet, unselectedBet;
     [SerializeField] CardController khanUI, phudocUI;
-    [SerializeField] Button prtScrBtn, tutorialBtn, rewardBtn, shopBtn;
+    [SerializeField] Button prtScrBtn, tutorialBtn, rewardBtn, shopBtn, historyBtn;
 
     bool isShowNoti = false;
     Coroutine waitSpin;
@@ -63,10 +63,17 @@ public class GameManager : MonoBehaviour
             tutorialBtn.onClick.AddListener(OnClickTutorial);
             rewardBtn.onClick.AddListener(OnClickReward);
             shopBtn.onClick.AddListener(OnClickShop);
+            historyBtn.onClick.AddListener(OnClickHistory);
 
             InitObserver();
         }
         else Destroy(gameObject);
+    }
+
+    private void OnClickHistory()
+    {
+        if (GameState != GameState.WAIT) return;
+        PopupManager.Instance.ShowPopup<BetHistoryPopup>();
     }
 
     private void OnClickShop()
@@ -279,6 +286,12 @@ public class GameManager : MonoBehaviour
         {
             ResponseData responseData = JsonUtility.FromJson<ResponseData>(www.downloadHandler.text);
             CardData cardData = SOContainer.Instance.GetSO<CardData>();
+
+            BetHistory betHistory = new()
+            {
+                Cards = responseData.cards
+            };
+            SessionPref.AddHistory(betHistory);
 
             SoundManager.Instance.SoundSpin();
 

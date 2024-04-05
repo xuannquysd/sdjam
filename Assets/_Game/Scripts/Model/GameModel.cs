@@ -25,3 +25,9 @@ public class SpecialReward
     public int tpe;
     public string name;
 }
+
+[Serializable]
+public class BetHistory
+{
+    public byte[] Cards;
+}
