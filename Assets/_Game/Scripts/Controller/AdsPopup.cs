@@ -11,11 +11,11 @@ public class AdsPopup : PopupUI
         if (timer > 0f)
         {
             int timeShow = Mathf.CeilToInt(timer -= Time.deltaTime);
-            title.text = "Đây là quảng cáo, bạn sẽ nhận được 10 xu\n" + timeShow;
+            title.text = "Đây là quảng cáo\nbạn sẽ nhận được 10.000 XU\n" + timeShow;
         }
         else
         {
-            SessionPref.AddMoney(10);
+            SessionPref.AddMoney(10000);
             PopupManager.Instance.HidePopup();
         }
     }

@@ -309,8 +309,12 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
 
-            if(winMoney > 0) ShowEffectWin(winMoney);
-            else GameState = GameState.WAIT;
+            if (winMoney > 0) ShowEffectWin(winMoney);
+            else
+            {
+                NotiPopup notiPopup = PopupManager.Instance.ShowPopup<NotiPopup>();
+                notiPopup.SetNoti("Chúc bạn may mắn lần sau", () => GameState = GameState.WAIT);
+            }
         }
     }
 
@@ -318,12 +322,6 @@ public class GameManager : MonoBehaviour
     {
         WinPopup winPopup = PopupManager.Instance.ShowPopup<WinPopup>();
         winPopup.InitUI(totalReward);
-
-        /*foreach (var card in cardBtn)
-        {
-            card.Clear();
-            if (IsSelected(card.Id)) card.OnSelect(true);
-        }*/
     }
 
     void InitObserver()
@@ -357,28 +355,6 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    bool IsKhan(ResponseData responseData)
-    {
-        byte[] cardWin = responseData.winedCards;
-        for(int i = 1; i < cardWin.Length; i++)
-        {
-            if (cardWin[i] != cardWin[i - 1]) return false;
-        }
-
-        return true;
-    }
-
-    bool IsPhuDoc(ResponseData responseData)
-    {
-        byte[] cardWin = responseData.winedCards;
-        for (int i = 1; i < cardWin.Length; i++)
-        {
-            if (cardWin[i] - cardWin[i - 1] != 3) return false;
-        }
-
-        return true;
-    }
-
     void OnClickPrtSrc()
     {
         string path = "";
@@ -387,6 +363,13 @@ public class GameManager : MonoBehaviour
 #endif
         path += Guid.NewGuid().ToString() + ".png";
         ScreenCapture.CaptureScreenshot(path);
+
+        StartCoroutine(ShowNotiPrtScreen());
+    }
+
+    IEnumerator ShowNotiPrtScreen()
+    {
+        yield return null;
 
         NotiPopup notiPopup = PopupManager.Instance.ShowPopup<NotiPopup>();
         notiPopup.SetNoti("Đã lưu ảnh");

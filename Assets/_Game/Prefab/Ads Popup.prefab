@@ -289,8 +289,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0110\xE2y l\xE0 qu\u1EA3ng c\xE1o, b\u1EADn s\u1EBD nh\u1EADn \u0111\u01B0\u1EE3c
-    10 xu\\n\n5"
+  m_text: "\u0110\xE2y l\xE0 qu\u1EA3ng c\xE1o \nb\u1EA1n s\u1EBD nh\u1EADn \u0111\u01B0\u1EE3c
+    10,000 XU\n5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -20
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

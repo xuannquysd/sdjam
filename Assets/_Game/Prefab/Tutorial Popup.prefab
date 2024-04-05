@@ -414,42 +414,42 @@ MonoBehaviour:
     ch\u1ECDn m\u1EE9c c\u01B0\u1EE3c b\u1EB1ng c\xE1ch b\u1EA5m v\xE0o c\xE1c n\xFAt
     \n\tm\u1EE9c c\u01B0\u1EE3c.\r\n\t- Ch\u1ECDn qu\xE2n b\xE0i/ t\u1EADp h\u1EE3p
     b\xE0i \u0111\u1EB7t c\u01B0\u1EE3c, bao g\u1ED3m:\r\n\t\t- Qu\xE2n b\xE0i\r\n\t\t-
-    Ch\u1EA5t\r\n\t\t- S\u1ED1\r\n\t\t- C\xE1c t\u1ED5 h\u1EE3p \u0111\u1EB7c bi\u1EC7t
-    (th\u01B0\u1EDFng l\u1EDBn)\r\n\t- B\u1EA5m <b>QUAY</b> \u0111\u1EC3 b\u1EAFt
-    \u0111\u1EA7u\n\t- Tr\xFAng th\u01B0\u1EDFng: khi quay tr\xFAng v\u1EDBi c\xE1c
-    qu\xE2n b\xE0i/t\u1EADp h\u1EE3p b\xE0i \n\t\u0111\xE3 \u0111\u1EB7t, ng\u01B0\u1EDDi
-    ch\u01A1i s\u1EBD tr\xFAng th\u01B0\u1EDFng theo t\u1EF7 l\u1EC7 \u0111\xE3 \u0111\u01B0\u1EE3c
+    S\u1ED1\r\n\t\t- C\xE1c t\u1EADp h\u1EE3p \u0111\u1EB7c bi\u1EC7t (th\u01B0\u1EDFng
+    l\u1EDBn)\r\n\t- B\u1EA5m <b>QUAY</b> \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u\n\t-
+    Tr\xFAng th\u01B0\u1EDFng: khi quay tr\xFAng v\u1EDBi c\xE1c qu\xE2n b\xE0i/t\u1EADp
+    h\u1EE3p b\xE0i \n\t\u0111\xE3 \u0111\u1EB7t, ng\u01B0\u1EDDi ch\u01A1i s\u1EBD
+    tr\xFAng th\u01B0\u1EDFng theo t\u1EF7 l\u1EC7 \u0111\xE3 \u0111\u01B0\u1EE3c
     \n\tth\xF4ng b\xE1o.\r\n<size=120%><b>- M\u1EE9c c\u01B0\u1EE3c:</b> 1, 10, 100
     xu\r</size>\n<size=120%><b>- \u0110\u1EB7t c\u01B0\u1EE3c: \r</b>\r</size>\n\t-
     M\u1ED7i l\u1EA7n b\u1EA5m v\xE0o qu\xE2n b\xE0i l\xE0 1 l\u1EA7n m\u1EE9c c\u01B0\u1EE3c.
     Ng\u01B0\u1EDDi ch\u01A1i \n\tc\xF3 th\u1EC3 ch\u1ECDn nhi\u1EC1u l\u1EA7n c\u01B0\u1EE3c
-    cho 1 qu\xE2n b\xE0i/t\u1ED5 h\u1EE3p.\r\n\t- S\u1ED1 Xu c\u01B0\u1EE3c cho m\u1ED7i
-    qu\xE2n b\xE0i/t\u1ED5 h\u1EE3p s\u1EBD hi\u1EC3n th\u1ECB \u1EDF \xF4 b\xEAn
-    d\u01B0\u1EDBi\r\n\t- Qu\xE2n b\xE0i/t\u1EADp h\u1EE3p b\xE0i \u0111\u1EB7t c\u01B0\u1EE3c
-    s\u1EBD \u0111\u01B0\u1EE3c \u0111\xE1nh d\u1EA5u ri\xEAng.\r\n\t- Ng\u01B0\u1EDDi
-    ch\u01A1i c\xF3 th\u1EC3 ch\u1ECDn \u0111\u1EB7t c\u01B0\u1EE3c kh\xF4ng h\u1EA1n
-    ch\u1EBF \n\tqu\xE2n b\xE0i/m\u1EE9c c\u01B0\u1EE3c\r\n\t- Ng\u01B0\u1EDDi ch\u01A1i
-    c\xF3 th\u1EC3 s\u1EED d\u1EE5ng n\xFAt <b>C\u01B0\u1EE3c l\u1EA1i</b> \u0111\u1EC3
-    h\u1EE7y c\xE1c l\u1EF1a \n\tch\u1ECDn c\u01B0\u1EE3c v\xE0 \u0111\u1EB7t l\u1EA1i
-    t\u1EEB \u0111\u1EA7u.\r\n<size=120%><b>- Tr\u1EA3 th\u01B0\u1EDFng:</b></size>
-    Ng\u01B0\u1EDDi ch\u01A1i \u0111\u01B0\u1EE3c tr\u1EA3 th\u01B0\u1EDFng theo
-    b\u1EA3ng d\u01B0\u1EDBi \u0111\xE2y:\r<color=\"red>\n\t- C\xE1c qu\xE2n b\xE0i:
-    8 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 S\u1ED1 (Nh\u1ECB \u0111\u1EBFn C\u1EEDu):
-    2.5 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 H\xE0ng (V\u1EA1n, V\u0103n, S\xE1ch):
-    1.2 l\u1EA7n c\u01B0\u1EE3c \n\t- B\u1ED9 Kh\xE0n (3 qu\xE2n b\xE0i gi\u1ED1ng
-    nhau): 800 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 Phu d\u1ECDc (VD: Nh\u1ECB v\u1EA1n,
-    Tam v\u1EA1n, T\u1EE9 v\u1EA1n): 500 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 T\xF4m
-    (c\xF3 \u0111\u1EE7 3 qu\xE2n Tam v\u1EA1n, Tam s\xE1ch, Th\u1EA5t v\u0103n):
-    5,000 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 L\xE8o (c\xF3 \u0111\u1EE7 3 qu\xE2n
-    C\u1EEDu v\u1EA1n - B\xE1t s\xE1ch - Chi Chi): 5,000 l\u1EA7n c\u01B0\u1EE3c\n\t-
-    B\u1ED9 NLXH HRCP (c\xF3 \u0111\u1EE7 3 qu\xE2n T\u1EE9 v\u1EA1n - Ng\u0169 v\u1EA1n
-    - Nh\u1ECB v\u1EA1n): 5,000 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 NOBC (c\xF3
-    \u0111\u1EE7 3 qu\xE2n Ng\u0169 s\xE1ch - Chi Chi - B\xE1t v\u1EA1n): 5,000 l\u1EA7n
-    c\u01B0\u1EE3c</color>\n<size=120%><b>- C\u1EEDa h\xE0ng/Qu\u1EA3ng c\xE1o</b></size>\n\t-
-    Ng\u01B0\u1EDDi ch\u01A1i c\xF3 th\u1EC3 mua xu trong c\u1EEDa h\xE0ng \u0111\u1EC3
-    ch\u01A1i\r\n\t- Ng\u01B0\u1EDDi ch\u01A1i c\xF3 th\u1EC3 xem qu\u1EA3ng c\xE1o
-    \u0111\u1EC3 nh\u1EADn xu mi\u1EC5n ph\xED \n\t(t\u1ED1i \u0111a 2 l\u01B0\u1EE3t/ng\xE0y)\r\n\t-
-    M\u1ED7i l\u01B0\u1EE3t qu\u1EA3ng c\xE1o t\u1EB7ng 10 xu\r\n"
+    cho 1 qu\xE2n b\xE0i/t\u1EADp h\u1EE3p.\r\n\t- S\u1ED1 Xu c\u01B0\u1EE3c cho
+    m\u1ED7i qu\xE2n b\xE0i/t\u1EADp h\u1EE3p s\u1EBD hi\u1EC3n th\u1ECB \u1EDF \xF4
+    b\xEAn d\u01B0\u1EDBi\r\n\t- Qu\xE2n b\xE0i/t\u1EADp h\u1EE3p b\xE0i \u0111\u1EB7t
+    c\u01B0\u1EE3c s\u1EBD \u0111\u01B0\u1EE3c \u0111\xE1nh d\u1EA5u ri\xEAng.\r\n\t-
+    Ng\u01B0\u1EDDi ch\u01A1i c\xF3 th\u1EC3 ch\u1ECDn \u0111\u1EB7t c\u01B0\u1EE3c
+    kh\xF4ng h\u1EA1n ch\u1EBF \n\tqu\xE2n b\xE0i/m\u1EE9c c\u01B0\u1EE3c\r\n\t-
+    Ng\u01B0\u1EDDi ch\u01A1i c\xF3 th\u1EC3 s\u1EED d\u1EE5ng n\xFAt <b>C\u01B0\u1EE3c
+    l\u1EA1i</b> \u0111\u1EC3 h\u1EE7y c\xE1c l\u1EF1a \n\tch\u1ECDn c\u01B0\u1EE3c
+    v\xE0 \u0111\u1EB7t l\u1EA1i t\u1EEB \u0111\u1EA7u.\r\n<size=120%><b>- Tr\u1EA3
+    th\u01B0\u1EDFng:</b></size> Ng\u01B0\u1EDDi ch\u01A1i \u0111\u01B0\u1EE3c tr\u1EA3
+    th\u01B0\u1EDFng theo b\u1EA3ng d\u01B0\u1EDBi \u0111\xE2y:\r<color=\"red>\n\t-
+    C\xE1c qu\xE2n b\xE0i: 8 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 S\u1ED1 (Nh\u1ECB
+    \u0111\u1EBFn C\u1EEDu): 2.5 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 Kh\xE0n (3
+    qu\xE2n b\xE0i gi\u1ED1ng nhau): 800 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 Phu
+    d\u1ECDc (VD: Nh\u1ECB v\u1EA1n, Tam v\u1EA1n, T\u1EE9 v\u1EA1n): 500 l\u1EA7n
+    c\u01B0\u1EE3c\n\t- B\u1ED9 T\xF4m (c\xF3 \u0111\u1EE7 3 qu\xE2n Tam v\u1EA1n,
+    Tam s\xE1ch, Th\u1EA5t v\u0103n): 5,000 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9
+    L\xE8o (c\xF3 \u0111\u1EE7 3 qu\xE2n C\u1EEDu v\u1EA1n - B\xE1t s\xE1ch - Chi
+    Chi): 5,000 l\u1EA7n c\u01B0\u1EE3c\n\t- B\u1ED9 NLXH HRCP (c\xF3 \u0111\u1EE7
+    3 qu\xE2n T\u1EE9 v\u1EA1n - Ng\u0169 v\u1EA1n - Nh\u1ECB v\u1EA1n): 5,000 l\u1EA7n
+    c\u01B0\u1EE3c\n\t- B\u1ED9 NOBC (c\xF3 \u0111\u1EE7 3 qu\xE2n Ng\u0169 s\xE1ch
+    - Chi Chi - B\xE1t v\u1EA1n): 5,000 l\u1EA7n c\u01B0\u1EE3c</color>\n<size=120%><b>-
+    C\u1EEDa h\xE0ng/Qu\u1EA3ng c\xE1o</b></size>\n\t- Ng\u01B0\u1EDDi ch\u01A1i
+    c\xF3 th\u1EC3 mua xu trong c\u1EEDa h\xE0ng \u0111\u1EC3 ch\u01A1i\r\n\t- Ng\u01B0\u1EDDi
+    ch\u01A1i c\xF3 th\u1EC3 xem qu\u1EA3ng c\xE1o \u0111\u1EC3 nh\u1EADn xu mi\u1EC5n
+    ph\xED \n\t(t\u1ED1i \u0111a 2 l\u01B0\u1EE3t/ng\xE0y)\r\n\t- M\u1ED7i l\u01B0\u1EE3t
+    qu\u1EA3ng c\xE1o t\u1EB7ng 10 xu\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

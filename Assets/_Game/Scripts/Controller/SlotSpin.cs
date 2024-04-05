@@ -41,21 +41,9 @@ public class SlotSpin : MonoBehaviour
         resultIcon.sprite = icon;
 
         fakeSlide.anchoredPosition = Vector2.zero;
+        fakeSlide.DOAnchorPosY(-140f * 14f, 1.5f).SetEase(Ease.OutSine);
 
-        while (true)
-        {
-            yield return null;
-            
-            if (fakeSlide.anchoredPosition.y > -140f * 14f)
-            {
-                fakeSlide.anchoredPosition += 1500f * Time.deltaTime * Vector2.down;
-            }
-            else
-            {
-                fakeSlide.DOAnchorPosY(-140f * 14f, 0.5f).SetEase(Ease.OutBack, -100f);
-                break;
-            }
-        }
+        yield return new WaitForSeconds(1.5f);
     }
 
     public void Stop()

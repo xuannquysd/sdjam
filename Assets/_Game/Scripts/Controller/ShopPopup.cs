@@ -9,9 +9,9 @@ public class ShopPopup : PopupUI
     private void Awake()
     {
         removeAdsBtn.onClick.AddListener(OnClickRemoveAds);
-        coin10Btn.onClick.AddListener(() => OnClickBuyCoin(10));
-        coin100Btn.onClick.AddListener(() => OnClickBuyCoin(100));
-        coint1000Btn.onClick.AddListener(() => OnClickBuyCoin(1000));
+        coin10Btn.onClick.AddListener(() => OnClickBuyCoin(10000));
+        coin100Btn.onClick.AddListener(() => OnClickBuyCoin(100000));
+        coint1000Btn.onClick.AddListener(() => OnClickBuyCoin(1000000));
         closePopup.onClick.AddListener(() => Destroy(gameObject));
     }
 
