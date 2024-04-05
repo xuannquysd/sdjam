@@ -11,7 +11,7 @@ public class AdsPopup : PopupUI
         if (timer > 0f)
         {
             int timeShow = Mathf.CeilToInt(timer -= Time.deltaTime);
-            title.text = "Đây là quảng cáo\nbạn sẽ nhận được 10.000 XU\n" + timeShow;
+            title.text = "Đây là quảng cáo\nbạn sẽ nhận được 10,000 XU\n" + timeShow;
         }
         else
         {
